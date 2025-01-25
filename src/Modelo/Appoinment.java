@@ -19,6 +19,7 @@ public class Appoinment {
     private ListUserSalud listaUser = new ListUserSalud();
     private ListUserPatient listPatien = new ListUserPatient();
 
+// contructor para doctores
 
     public Appoinment(String date, String hours, String userSalud) {
         this.id = contador++;
@@ -27,7 +28,7 @@ public class Appoinment {
         this.setUserSalud(userSalud);
         this.patient = "Sin Asignar";
     }
-
+    // contructor para pacientes
     public Appoinment(String date, String hours, String userSalud, String patient) {
         this.id = contador++;
         this.date = date;

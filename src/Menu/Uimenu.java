@@ -13,7 +13,6 @@ public class Uimenu {
 
     private  static  CrudDoctor  crudDoctor  = new CrudDoctor();
     private static CrudPatients crudPatients = new CrudPatients();
-
     public static   void MenuUsuarioSalud(String tipo, String user){
 
 
@@ -26,7 +25,7 @@ public class Uimenu {
             if(tipo.equals("DOCTOR")){
                 System.out.println("MENU DOCTOR");
                 System.out.println("*************************");
-                System.out.println("Selecione\n [1] Agendar\n [2] Mostrar citas\n [3] Mostrar mis citas\n [4] Cancelar cita \n [0] Salir");
+                System.out.println("Selecione\n [1] Agendar\n [2] Mostrar citas\n [3] Mostrar mis citas\n  [4] Asignarme una cita ya creada por otro doctor \n [5] Cancelar cita \n [0] Salir");
                 System.out.println("*************************");
                 estado = Integer.parseInt(sc.nextLine());
                 if(estado == 1) {
@@ -35,6 +34,10 @@ public class Uimenu {
                     crudDoctor.ShowAll();
                 } else if (estado == 3) {
                     crudDoctor.ShowUser(user);
+                }else if (estado == 4) {
+                    MenuActualizarCitaPatientDOC(user);
+                }else if (estado == 5) {
+                    MenuCancelarCitaPatientDOC();
                 }
 
             } else if (tipo.equals("ENFERMERO")) {
@@ -75,15 +78,8 @@ public class Uimenu {
                 MenuCancelarCitaPatient(user);
             }
 
-
         }while (estado != 0);
     }
-
-
-
-
-
-
 
     public static void MenuAgendarCita(String user){
         System.out.println("MENU AGENDAR CITA");
@@ -92,7 +88,6 @@ public class Uimenu {
         String fecha = sc.nextLine();
         System.out.println("Hora HH:MM");
         String hora = sc.nextLine();
-
         crudDoctor.addAppoiment(new Appoinment(fecha, hora, user));
         System.out.println("✅ Cita agregada correctamente.\n");
     }
@@ -120,15 +115,8 @@ public class Uimenu {
         System.out.println("CITAS DISPONIBLES");
         crudPatients.ShowAll();
         System.out.println("SELECCIONAR CITA DISPONIBLE CON EL ID EJEMPLO 1 O 2 O 3...");
-
         int id = Integer.parseInt(sc.nextLine());
-
         crudPatients.update(id,user);
-
-
-
-
-
     }
 
 
@@ -136,19 +124,27 @@ public class Uimenu {
         System.out.println("Cancelar cita");
         crudPatients.ShowUser(user);
         System.out.println("SELECCIONAR CITA DISPONIBLE CON EL ID EJEMPLO 1 O 2 O 3...");
-
         int id = Integer.parseInt(sc.nextLine());
-
         crudPatients.deleate(id);
-
-
-
-
 
     }
 
+    public static void MenuActualizarCitaPatientDOC(String user){
+        System.out.println("CITAS DISPONIBLES");
+        crudDoctor.ShowAll();
+        System.out.println("SELECCIONAR CITA DISPONIBLE CON EL ID EJEMPLO 1 O 2 O 3...");
+        int id = Integer.parseInt(sc.nextLine());
+        crudDoctor.update(id,user);
+    }
 
 
+    public static void MenuCancelarCitaPatientDOC(){
+        System.out.println("Cancelar cita");
+        crudDoctor.ShowAll();
+        System.out.println("SELECCIONAR CITA DISPONIBLE CON EL ID EJEMPLO 1 O 2 O 3...");
+        int id = Integer.parseInt(sc.nextLine());
+        crudDoctor.deleate(id);
 
+    }
 
 }
