@@ -1,4 +1,6 @@
 ﻿# JAVACITASMEDICAS
+![Java](https://img.shields.io/badge/Java-21-%23ED8B00?logo=java&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Completado-%2300C853)
 # Proyecto de Gestión de Citas Médicas 🏥  
 
 ## Descripción  
